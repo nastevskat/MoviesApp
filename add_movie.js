@@ -8,7 +8,6 @@ $(document).ready(function(){
         };
         reader.readAsDataURL(file);
     });
-
     $('#title').on('input', function () {
         const title = $(this).val();
         if (title.length > 250) {
@@ -19,7 +18,6 @@ $(document).ready(function(){
             $(this).removeClass('is-invalid');
         }
     });
-
     $('#inlineCheckbox1').on('change', function() {
         if ($('input[type="checkbox"]:checked').length > 3) {
             $('#genreError').text('You can select up to 3 genres.');
@@ -27,8 +25,6 @@ $(document).ready(function(){
             $('#genreError').text('');
         }
     });
-
-
     $('#year').on('input', function () {
         const year = $(this).val();
         const validYear = /^\d{4}$/;
@@ -40,7 +36,6 @@ $(document).ready(function(){
             $(this).removeClass('is-invalid');
         }
     });
-
     $('#description').on('input', function () {
         const description = $(this).val();
         if (description.length > 500) {
@@ -51,7 +46,6 @@ $(document).ready(function(){
             $(this).removeClass('is-invalid');
         }
     });
-
     $("form").submit(function(event){
         event.preventDefault();
 
@@ -63,8 +57,6 @@ $(document).ready(function(){
         var year = $('#year').val();
         var description = $('#description').val();
         var imageData = localStorage.getItem('movieImage');
-
-
         var movieData = {
             title: title,
             genre: genre,
@@ -72,22 +64,15 @@ $(document).ready(function(){
             description: description,
             image: imageData
         };
-
- 
         var storedMovies = JSON.parse(localStorage.getItem('storedMovies')) || [];
-    
         storedMovies.push(movieData);
-  
         localStorage.setItem('storedMovies', JSON.stringify(storedMovies));
-
         $('#title').val('');
         $("input[type=checkbox]").prop('checked', false);
         $('#year').val('');
         $('#description').val('');
         $('#img').val('');
         alert("Movie Added!");
- 
         window.location.href = "index.html";
     });
-
 });
